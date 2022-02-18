@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: rust-hello-ingress
+  namespace: rust-hello
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: ##HOSTNAME##
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: rust-hello
+            port:
+              name: web

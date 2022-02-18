@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rust-hello-deployment
+  namespace: rust-hello
+  labels:
+    app: rust-hello
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: rust-hello
+  template:
+    metadata:
+      labels:
+        app: rust-hello
+    spec:
+      containers:
+      - name: rust-hello
+        image: registry.digitalocean.com/ikjpz/rust_hello@sha256:1e0c67cc644daaab1308ec6f6ff5f6e2a7dc5162ab8b3a3dd9d895c6d4b4d849
+        ports:
+        - containerPort: 8001
