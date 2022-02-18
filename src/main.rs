@@ -13,7 +13,7 @@ fn hello_kube() -> String {
 
 #[get("/")]
 fn index() -> String {
-    "helo wodl ‽".to_string()
+    "hellllllllllllo wodl ‽".to_string()
 }
 
 #[get("/ok")]
