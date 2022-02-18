@@ -45,6 +45,9 @@ jobs:
         # if: github.event_name != 'pull_request'
         run: doctl registry login --expiry-seconds 600
 
+      - mame: test login
+        run: docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
       # Install the cosign tool except on PR
       # https://github.com/sigstore/cosign-installer
       - name: Install cosign
@@ -73,6 +76,7 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
+          cache-from: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
           # push: ${{ github.event_name != 'pull_request' }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
