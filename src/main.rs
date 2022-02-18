@@ -6,9 +6,14 @@ fn hello(name: &str, age: u8) -> String {
     format!("Hello, {} year old named {}!", age, name)
 }
 
+#[get("/kube")]
+fn hello_kube() -> String {
+    "helo kube".to_string()
+}
+
 #[get("/")]
 fn index() -> String {
-    "hello".to_string()
+    "helo wodl ‽".to_string()
 }
 
 #[get("/ok")]
@@ -18,5 +23,5 @@ fn healthcheck() -> String {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![hello, index, healthcheck])
+    rocket::build().mount("/", routes![hello, index, hello_kube, healthcheck])
 }
