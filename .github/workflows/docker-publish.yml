@@ -1,10 +1,4 @@
 name: Docker
-
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 on:
   push:
     branches: [ master ]
@@ -14,7 +8,6 @@ on:
     branches: [ master ]
 
 env:
-  # Use docker.io for Docker Hub if empty
   REGISTRY: registry.digitalocean.com/ikjpz
   IMAGE_NAME: rust_hello
 
