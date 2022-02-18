@@ -60,3 +60,20 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      
+      - name: Deploy
+        if: github.event_name != 'pull_request'
+        run: sed -i 's/##HOSTNAME##/${{ secrets.HOSTNAME }}/' kube/ingress.yaml
+
+      - name: Check ingress
+        if: github.event_name != 'pull_request'
+        run: cat kube/ingress.yaml
+
+      - name: Check ingress
+        if: github.event_name != 'pull_request'
+        run: |
+          kubectl apply -f kube/namespace.yaml
+          kubectl apply -f kube/deployment.yaml
+          kubectl apply -f kube/service.yaml
+          kubectl apply -f kube/ingress.yaml
+                              
