@@ -5,10 +5,10 @@ WORKDIR ./rust_hello
 COPY ./Cargo.toml ./Cargo.toml
 RUN cargo build --release
 RUN rm src/*.rs
-
-ADD . ./
-
 RUN rm ./target/release/deps/rust_hello*
+
+ADD ./src ./src
+
 RUN cargo build --release
 
 
