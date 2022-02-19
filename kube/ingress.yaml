@@ -5,6 +5,10 @@ metadata:
   namespace: rust-hello
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+      - ##HOSTNAME##
+    secretName: rust-hello-tls-secret
   rules:
   - host: ##HOSTNAME##
     http:
