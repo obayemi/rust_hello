@@ -65,11 +65,10 @@ jobs:
           cache-to: type=gha,mode=max
       
       - name: Update variables
-        #if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run: |
           sed -i 's/##HOSTNAME##/${{ secrets.HOSTNAME }}/' kube/ingress.yaml
           sed -i 's|##IMAGE##|${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|; s|##DATABASE_URL##|${{ secrets.DATABASE_URL }}|' kube/deployment.yaml
-          cat kube/deployment.yaml
 
       - name: Deploy
         if: github.event_name != 'pull_request'
