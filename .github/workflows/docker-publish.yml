@@ -68,7 +68,7 @@ jobs:
         # if: github.event_name != 'pull_request'
         run: |
           sed -i 's/##HOSTNAME##/${{ secrets.HOSTNAME }}/' kube/ingress.yaml
-          sed -i 's|##IMAGE##|${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|; s|##DATABASE_URL##|env.DATABASE_URL|' kube/deployment.yaml
+          sed -i 's|##IMAGE##|${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|; s|##DATABASE_URL##|${{ secrets.DATABASE_URL }}|' kube/deployment.yaml
           cat kube/deployment.yaml
 
       - name: Deploy
