@@ -1,31 +1,25 @@
 {
   "db": "PostgreSQL",
-  "9b8cd0c0767bd77fe526c25a9101b9ccaf921f6da788f266b65659834dbd6e1e": {
+  "577fa3435e2b29e4f3ebaea06f7b5f8c3b25d4cd386d0bf8687ca3b125eee0fd": {
     "describe": {
       "columns": [
         {
-          "name": "id",
-          "ordinal": 0,
-          "type_info": "Int4"
-        },
-        {
           "name": "name",
-          "ordinal": 1,
+          "ordinal": 0,
           "type_info": "Varchar"
         },
         {
           "name": "rule",
-          "ordinal": 2,
+          "ordinal": 1,
           "type_info": "Text"
         },
         {
           "name": "extra",
-          "ordinal": 3,
+          "ordinal": 2,
           "type_info": "Text"
         }
       ],
       "nullable": [
-        false,
         false,
         false,
         false
@@ -34,6 +28,38 @@
         "Left": []
       }
     },
-    "query": "SELECT * FROM rules"
+    "query": "SELECT name, rule, extra FROM rules"
+  },
+  "84e48dc43e8041447d4a38d39e84655ec681f965291934ba646a147b1f86d8fe": {
+    "describe": {
+      "columns": [
+        {
+          "name": "name",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "rule",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "extra",
+          "ordinal": 2,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT name, rule, extra FROM rules WHERE name = $1"
   }
 }
