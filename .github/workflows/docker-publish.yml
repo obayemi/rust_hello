@@ -32,11 +32,11 @@ jobs:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
       - name: Log in to DO Container Registry
-        #if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run: doctl registry login --expiry-seconds 600
 
       - name: Log in to DOKS
-        #if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run:  doctl kubernetes cluster config save ${{ secrets.DIGITALOCEAN_KUBE_CLUSTER_ID }}
         
       # Workaround: https://github.com/docker/build-push-action/issues/461
@@ -58,21 +58,20 @@ jobs:
         uses: docker/build-push-action@ad44023a93711e3deb337508980b4b5e9bcdc5dc
         with:
           context: .
-          #push: ${{ github.event_name != 'pull_request' }}
-          push: true
+          push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-      
+
       - name: Update variables
-        #if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run: |
           sed -i 's/##HOSTNAME##/${{ secrets.HOSTNAME }}/' kube/ingress.yaml
           sed -i 's|##IMAGE##|${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}|; s|##DATABASE_URL##|${{ secrets.DATABASE_URL }}|' kube/deployment.yaml
 
       - name: Deploy
-        # if: github.event_name != 'pull_request'
+        if: github.event_name != 'pull_request'
         run: |
           kubectl apply -f kube/namespace.yaml
           kubectl apply -f kube/deployment.yaml
