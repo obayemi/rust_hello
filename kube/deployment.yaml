@@ -31,8 +31,8 @@ spec:
         ports:
         - containerPort: 8001
         env:
-        - name: POSTGRES_PASSWORD
+        - name: DATABASE_URL
           valueFrom:
             secretKeyRef:
-              name: rust-hello-db-secrets
-              key: postgres-password
+              name: rust-hello-secrets
+              key: databaseUrl
