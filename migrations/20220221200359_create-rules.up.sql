@@ -1,0 +1,6 @@
+CREATE TABLE rules (
+    id SERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(30) NOT NULL UNIQUE,
+    rule TEXT NOT NULL,
+    extra TEXT NOT NULL
+);

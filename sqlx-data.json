@@ -1,0 +1,39 @@
+{
+  "db": "PostgreSQL",
+  "9b8cd0c0767bd77fe526c25a9101b9ccaf921f6da788f266b65659834dbd6e1e": {
+    "describe": {
+      "columns": [
+        {
+          "name": "id",
+          "ordinal": 0,
+          "type_info": "Int4"
+        },
+        {
+          "name": "name",
+          "ordinal": 1,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "rule",
+          "ordinal": 2,
+          "type_info": "Text"
+        },
+        {
+          "name": "extra",
+          "ordinal": 3,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT * FROM rules"
+  }
+}
