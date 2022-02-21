@@ -1,0 +1,65 @@
+{
+  "db": "PostgreSQL",
+  "577fa3435e2b29e4f3ebaea06f7b5f8c3b25d4cd386d0bf8687ca3b125eee0fd": {
+    "describe": {
+      "columns": [
+        {
+          "name": "name",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "rule",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "extra",
+          "ordinal": 2,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": []
+      }
+    },
+    "query": "SELECT name, rule, extra FROM rules"
+  },
+  "84e48dc43e8041447d4a38d39e84655ec681f965291934ba646a147b1f86d8fe": {
+    "describe": {
+      "columns": [
+        {
+          "name": "name",
+          "ordinal": 0,
+          "type_info": "Varchar"
+        },
+        {
+          "name": "rule",
+          "ordinal": 1,
+          "type_info": "Text"
+        },
+        {
+          "name": "extra",
+          "ordinal": 2,
+          "type_info": "Text"
+        }
+      ],
+      "nullable": [
+        false,
+        false,
+        false
+      ],
+      "parameters": {
+        "Left": [
+          "Text"
+        ]
+      }
+    },
+    "query": "SELECT name, rule, extra FROM rules WHERE name = $1"
+  }
+}
