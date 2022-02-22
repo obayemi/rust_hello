@@ -12,3 +12,8 @@ github:
     addComment: false
 image:
   file: .gitpod.dockerfile
+tasks:
+  - init:
+      cargo build
+      cargo install sqlx-cli --no-default-features --features rustls,postgres
+    command: cargo watch -x run
