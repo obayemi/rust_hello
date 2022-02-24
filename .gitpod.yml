@@ -17,4 +17,6 @@ tasks:
       cargo build
       cargo install cargo-watch
       cargo install sqlx-cli --no-default-features --features rustls,postgres
-    command: cargo watch -x run
+    command: |
+      sqlx migrate run
+      cargo watch -x run
