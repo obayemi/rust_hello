@@ -36,6 +36,12 @@ async fn rules_list(pool: &rocket::State<PgPool>) -> Json<Vec<Rule>> {
 
 #[get("/rules/<name>")]
 async fn rules_detail(name: String, pool: &rocket::State<PgPool>) -> Option<Json<Rule>> {
+    let thing = Rule {
+        name: "aaa".to_string(),
+        rule: "aaa".to_string(),
+        extra: "aaa".to_string(),
+    };
+    println!("{}", thing.name);
     Some(sqlx::query_as!(Rule, "SELECT name, rule, extra FROM rules WHERE name = $1", name).fetch_optional(&**pool).await.unwrap()?.into())
 }
 
@@ -52,6 +58,10 @@ async fn main() {
         .connect(&env::var("DATABASE_URL").expect("missing `DATABASE_URL` env variable"))
         .await
         .expect("error connecting to the db");
+    
+    sqlx::migrate!()
+        .run(&pool)
+        .await.unwrap();
 
     rocket::build()
         .mount(
